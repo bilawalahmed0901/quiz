@@ -9,7 +9,7 @@ class Point
     @value = 0
   end
 
-  def inc
+  def increment
     @value += 1
   end
 
@@ -19,16 +19,16 @@ class Point
 end
 
 def ask_question_check_answer(question, answer, point)
-  print question, '? '
+  print question.concat '? '
   answer_from_user = $stdin.gets.strip
 
-  point.inc if answer_from_user == answer
+  point.increment if answer_from_user.eql? answer
 end
 
 def main(file_name, secs, randomize)
   point = Point.new
   questions = CSV.read file_name
-  questions.shuffle! if randomize == true
+  questions.shuffle! if randomize.eql? true
 
   print "You will have maximum of #{secs} seconds to answer all questions\n"
   print 'Press enter to start...'
